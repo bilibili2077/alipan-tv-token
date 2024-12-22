@@ -4,7 +4,7 @@
         <a-layout-header class="header">
             <div class="header-content max-w-3xl mx-auto px-4 flex items-center">
                 <NuxtLink to="/" class="logo">
-                    <a-typography-title :level="4" class="!mb-0 !text-white">爱拓工具箱</a-typography-title>
+                    <a-typography-title :level="4" class="!mb-0 !text-white">阿里TV工具箱</a-typography-title>
                 </NuxtLink>
             </div>
         </a-layout-header>

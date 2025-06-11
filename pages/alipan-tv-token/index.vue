@@ -80,8 +80,8 @@
         <p>在 alist 的阿里云盘open配置中：</p>
         <ul class="list-disc pl-5">
           <li>Oauth令牌链接填写: <code
-              class="bg-gray-100 px-1 rounded">https://alitv.1314kiss.eu.org/api/oauth/alipan/token</code></li>
-          <li>如果需要获取 token，访问: <code class="bg-gray-100 px-1 rounded">https://alitv.1314kiss.eu.org/alipan-tv-token</code></li>
+              class="bg-gray-100 px-1 rounded">https://tv.1314kiss.eu.org/api/oauth/alipan/token</code></li>
+          <li>如果需要获取 token，访问: <code class="bg-gray-100 px-1 rounded">https://tv.1314kiss.eu.org/alipan-tv-token</code></li>
         </ul>
       </div>
     </div>

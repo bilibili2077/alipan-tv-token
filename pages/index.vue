@@ -58,7 +58,10 @@
                 </div>
                 
                 <div class="flex flex-col sm:flex-row gap-4">
-                  <button class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center">
+                  <button 
+                    class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center btn-hover"
+                    @click="navigateToTokenPage"
+                  >
                     <i class="fa fa-key mr-2"></i> 获取授权令牌
                   </button>
                   <button class="flex-1 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center">
@@ -142,9 +145,16 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router'; // 引入路由钩子
 
 // 深色模式状态
 const isDarkMode = ref(false);
+const router = useRouter(); // 获取路由实例
+
+// 导航到令牌页面
+const navigateToTokenPage = () => {
+  router.push(tools[0].path);
+};
 
 // 切换深色模式
 const toggleDarkMode = () => {

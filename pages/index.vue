@@ -1,7 +1,7 @@
 <template>
 
     <head>
-        <title>爱拓工具箱</title>
+        <title>工具箱</title>
     </head>
     <main class="max-h-screen bg-gray-100 p-4">
         <div class="mx-auto w-full max-w-3xl mb-8">
@@ -43,20 +43,6 @@ const tools = [
         title: '阿里云盘TV授权',
         description: '获取阿里云盘TV端的授权令牌',
         path: '/alipan-tv-token',
-        available: true
-    },
-    {
-        id: 2,
-        title: '挪车码牌生成',
-        description: '生成挪车码牌，方便他人联系车主',
-        path: '/move-car',
-        available: true
-    },
-    {
-        id: 3,
-        title: '二维码生成',
-        description: '生成自定义二维码',
-        path: '/qrcode',
         available: true
     },
 

@@ -32,13 +32,7 @@
 
 <script setup>
 const tools = [
-    {
-        id: 999,
-        title: '敬请期待',
-        description: '更多工具正在开发中...',
-        path: '',
-        available: false
-    }, {
+ {
         id: 1,
         title: '阿里云盘TV授权',
         description: '获取阿里云盘TV端的授权令牌',

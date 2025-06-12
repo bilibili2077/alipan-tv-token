@@ -26,7 +26,14 @@
                             </div>
                         </div>
                     </div>
-                </div>        
+                </div>
+            </div>
+        </main>
+    </div>
+</template>
+
+<script setup>
+import { useHead } from '#app'
 
 // 设置页面标题
 useHead({
@@ -56,4 +63,3 @@ html {
     scroll-behavior: smooth;
 }
 </style>
-    

@@ -91,7 +91,7 @@
     <p>本工具能帮助你一键获取「阿里云盘TV版」的刷新令牌，完全免费。TV接口能绕过三方应用权益包的速率限制，但前提你得是SVIP。</p>
     <template #footer>
       <!-- 开通会员链接 -->
-      <a-button type="primary" danger href="https://github.com/AlistTeam/alist/discussions/26" target="_blank">阿里TV发布地址</a-button>
+      <a-button type="primary" danger href="https://github.com/orgs/OpenListTeam/discussions/15" target="_blank">阿里TV接口发布地址</a-button>
       <a-button type="primary" @click="closeNotice">我知道了</a-button>
     </template>
   </a-modal>

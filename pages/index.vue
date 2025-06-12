@@ -58,8 +58,5 @@ useHead({
     animation: float 6s ease-in-out infinite;
 }
 
-/* 平滑滚动 */
-html {
-    scroll-behavior: smooth;
-}
+
 </style>

@@ -25,9 +25,6 @@
                                 </NuxtLink>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
         </main>
 
         <!-- 页脚 -->

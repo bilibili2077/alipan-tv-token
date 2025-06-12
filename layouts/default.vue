@@ -1,193 +1,123 @@
 <template>
-  <Loading />
-  <a-layout class="layout">
-    <a-layout-header class="header">
-      <div class="header-content max-w-5xl mx-auto px-4 flex items-center justify-center">
-        <NuxtLink to="/" class="logo flex items-center space-x-2">
-          <div class="w-8 h-8 rounded-md bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
-            <AimOutlined class="text-white" />
-          </div>
-          <a-typography-title :level="4" class="!mb-0 !text-white">阿里TV工具箱</a-typography-title>
-        </NuxtLink>
-      </div>
-    </a-layout-header>
+    <Loading />
+    <div class="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <!-- 现代化导航栏 -->
+        <header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-800 shadow-md transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <NuxtLink to="/" class="flex items-center">
+                            <span class="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                                阿里TV工具箱
+                            </span>
+                        </NuxtLink>
+                    </div>
+                    <div class="flex items-center">
+                        <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                            <template v-if="isDarkMode">
+                                <SunOutlined class="text-yellow-400" />
+                            </template>
+                            <template v-else>
+                                <MoonOutlined class="text-gray-600" />
+                            </template>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-    <a-layout-content class="site-layout-content">
-      <div class="max-w-5xl mx-auto w-full px-4 py-8 flex justify-center items-center min-h-[calc(100vh-134px)]">
-        <div class="w-full max-w-2xl">
-          <slot />
-        </div>
-      </div>
-    </a-layout-content>
+        <!-- 主要内容区域 -->
+        <main class="pt-20 pb-16 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
+            <slot />
+        </main>
 
-    <a-layout-footer class="footer">
-      <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center">
-        <div class="mb-4 md:mb-0">
-          <a-typography-text class="text-gray-400">© 2023 阿里TV工具箱</a-typography-text>
-        </div>
-        <div class="flex space-x-6">
-          <a-typography-link href="https://github.com/orgs/OpenListTeam/discussions/15" target="_blank" class="text-gray-400 hover:text-white transition-all duration-300 flex items-center">
-            <GithubOutlined class="mr-1" />
-            GitHub
-          </a-typography-link>
-          <a-typography-link href="#" target="_blank" class="text-gray-400 hover:text-white transition-all duration-300 flex items-center">
-            <QuestionCircleOutlined class="mr-1" />
-            帮助
-          </a-typography-link>
-          <a-typography-link href="#" target="_blank" class="text-gray-400 hover:text-white transition-all duration-300 flex items-center">
-            <FileTextOutlined class="mr-1" />
-            隐私政策
-          </a-typography-link>
-        </div>
-      </div>
-    </a-layout-footer>
-  </a-layout>
+        <!-- 页脚 -->
+        <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-center items-center">
+                    <a-typography-link 
+                        href="https://github.com/orgs/OpenListTeam/discussions/15" 
+                        target="_blank"
+                        class="flex items-center text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    >
+                        <GithubOutlined class="mr-2" />
+                        GitHub
+                    </a-typography-link>
+                </div>
+            </div>
+        </footer>
+    </div>
 </template>
 
 <script setup>
-import { 
-  GithubOutlined, 
-  QuestionCircleOutlined,
-  FileTextOutlined,
-  AimOutlined
-} from '@ant-design/icons-vue'
+import { ref, onMounted } from 'vue'
+import { GithubOutlined, SunOutlined, MoonOutlined } from '@ant-design/icons-vue'
 import Loading from '~/components/Loading.vue'
+
+// 深色模式状态
+const isDarkMode = ref(false)
+
+// 检查系统或本地存储的主题偏好
+onMounted(() => {
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
+        isDarkMode.value = true
+    } else {
+        document.documentElement.classList.remove('dark')
+        isDarkMode.value = false
+    }
+    
+    // 监听主题切换按钮点击事件
+    const themeToggle = document.getElementById('theme-toggle')
+    themeToggle.addEventListener('click', toggleTheme)
+})
+
+// 切换主题
+const toggleTheme = () => {
+    if (isDarkMode.value) {
+        document.documentElement.classList.remove('dark')
+        localStorage.theme = 'light'
+    } else {
+        document.documentElement.classList.add('dark')
+        localStorage.theme = 'dark'
+    }
+    isDarkMode.value = !isDarkMode.value
+}
 </script>
 
 <style scoped>
-.layout {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  background-attachment: fixed;
+/* 全局过渡动画 */
+body {
+    transition: background-color 0.3s ease;
 }
 
-.header {
-  position: fixed;
-  z-index: 100;
-  width: 100%;
-  background: rgba(15, 23, 42, 0.95);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(59, 130, 246, 0.1);
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+/* 导航栏滚动效果 */
+header {
+    transition: all 0.3s ease;
 }
 
-.header:hover {
-  background: rgba(15, 23, 42, 0.98);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-.header-content {
-  height: 64px;
-  justify-content: center !important;
+.dark header.scrolled {
+    background-color: rgba(31, 41, 55, 0.95);
 }
 
-.logo {
-  display: flex;
-  align-items: center;
+/* 按钮悬停效果 */
+button {
+    transition: all 0.2s ease;
 }
 
-.site-layout-content {
-  padding: 0;
-  margin-top: 64px;
-  min-height: calc(100vh - 64px - 70px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-.main-card {
-  width: 100%;
-  max-width: 480px;
-  background: rgba(15, 23, 42, 0.85);
-  border: 1px solid rgba(59, 130, 246, 0.15);
-  backdrop-filter: blur(20px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 
-              0 5px 15px rgba(59, 130, 246, 0.05);
-  border-radius: 24px;
-  color: #e2e8f0;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  overflow: hidden;
-}
-
-.main-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.main-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 
-              0 8px 25px rgba(59, 130, 246, 0.1);
-  border-color: rgba(59, 130, 246, 0.25);
-}
-
-.main-card .ant-card-head {
-  border-bottom: 1px solid rgba(59, 130, 246, 0.08);
-  padding: 16px 24px;
-  border-top-left-radius: 24px;
-  border-top-right-radius: 24px;
-}
-
-.main-card .ant-card-head-title {
-  color: #f8fafc;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-.main-card .ant-card-body {
-  padding: 24px;
-}
-
-.footer {
-  text-align: center;
-  background: transparent;
-  color: #94a3b8;
-  padding: 24px 0;
-  border-top: 1px solid rgba(59, 130, 246, 0.05);
-}
-
-/* 深度选择器覆盖 Ant Design 样式 */
-:deep(.ant-layout-header) {
-  padding: 0;
-}
-
-:deep(.ant-menu) {
-  border-bottom: none;
-}
-
-/* 装饰元素 */
-.bg-grid {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
-  z-index: -1;
-}
-
-.bg-gradient {
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
-  z-index: -1;
-  animation: pulse 20s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 0.3; }
-  50% { transform: scale(1.2); opacity: 0.6; }
+button:active {
+    transform: translateY(0);
+    box-shadow: none;
 }
 </style>

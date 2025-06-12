@@ -26,21 +26,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- 页脚 -->
-                <footer class="py-4 px-6 border-t border-gray-200 dark:border-gray-700 mt-auto">
-                    <div class="container mx-auto text-center text-sm text-gray-500 dark:text-gray-400">
-                        <p>© 2023 工具箱 | 让你的工作更高效</p>
-                    </div>
-                </footer>
-            </div>
-        </main>
-    </div>
-</template>
-
-<script setup>
-import { useHead } from '#app'
+                </div>        
 
 // 设置页面标题
 useHead({

@@ -98,12 +98,15 @@ header {
 
 header.scrolled {
     background-color: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .dark header.scrolled {
     background-color: rgba(31, 41, 55, 0.95);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
 }
 
 /* 按钮悬停效果 */
@@ -121,3 +124,4 @@ button:active {
     box-shadow: none;
 }
 </style>
+    

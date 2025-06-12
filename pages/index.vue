@@ -1,9 +1,9 @@
 <template>
     <div class="min-h-screen flex flex-col">
         <!-- 主内容区 -->
-        <main class="flex-1 flex items-center justify-center p-4 pt-12 pb-12">
-            <div class="container mx-auto max-w-3xl">
-                <div class="flex flex-col items-center min-h-[calc(100vh-12rem)] pt-8">
+        <main class="flex-1 flex flex-col p-4 pt-8">
+            <div class="container mx-auto max-w-3xl flex-1 flex flex-col">
+                <div class="flex-1 flex flex-col items-center pt-8">
                     <!-- 卡片 -->
                     <div class="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-1">
                         <div class="p-6 md:p-8">
@@ -27,15 +27,15 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- 页脚 -->
+                <footer class="py-4 px-6 border-t border-gray-200 dark:border-gray-700 mt-auto">
+                    <div class="container mx-auto text-center text-sm text-gray-500 dark:text-gray-400">
+                        <p>© 2023 工具箱 | 让你的工作更高效</p>
+                    </div>
+                </footer>
             </div>
         </main>
-
-        <!-- 页脚 -->
-        <footer class="py-4 px-6 border-t border-gray-200 dark:border-gray-700">
-            <div class="container mx-auto text-center text-sm text-gray-500 dark:text-gray-400">
-                <p>© 2023 工具箱 | 让你的工作更高效</p>
-            </div>
-        </footer>
     </div>
 </template>
 
@@ -70,3 +70,4 @@ html {
     scroll-behavior: smooth;
 }
 </style>
+    

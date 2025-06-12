@@ -40,21 +40,26 @@
 </template>
 
 <script setup>
-import { useHead } from '#app'
+import { useHead, onMounted, ref } from '#app'
 
 // 设置页面标题
 useHead({
     title: '阿里云盘TV授权工具 | 工具箱'
 })
 
+// 检测系统主题偏好
+const isDarkMode = ref(false)
+
 // 主题切换功能
 const toggleTheme = () => {
     if (document.documentElement.classList.contains('dark')) {
         document.documentElement.classList.remove('dark')
         localStorage.theme = 'light'
+        isDarkMode.value = false
     } else {
         document.documentElement.classList.add('dark')
         localStorage.theme = 'dark'
+        isDarkMode.value = true
     }
 }
 
@@ -63,20 +68,46 @@ onMounted(() => {
     // 从localStorage获取主题偏好
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark')
+        isDarkMode.value = true
     } else {
         document.documentElement.classList.remove('dark')
+        isDarkMode.value = false
     }
     
+    // 添加主题切换事件监听器
+    // 由于移除了导航栏，主题切换功能不再可用
+    // 如需保留功能，可以将切换按钮移至其他位置
+    
+    // 监听系统主题变化
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    const handleThemeChange = (e) => {
+        if (localStorage.theme === 'system' || !localStorage.theme) {
+            if (e.matches) {
+                document.documentElement.classList.add('dark')
+                isDarkMode.value = true
+            } else {
+                document.documentElement.classList.remove('dark')
+                isDarkMode.value = false
+            }
+        }
+    }
+    
+    mediaQuery.addEventListener('change', handleThemeChange)
+    
+    // 清理事件监听器
+    onBeforeUnmount(() => {
+        mediaQuery.removeEventListener('change', handleThemeChange)
+    })
 })
 
 // 页面滚动效果
 onMounted(() => {
-
+    // 由于移除了导航栏，不再需要滚动监听
 })
 
 // 清理事件监听器
 onBeforeUnmount(() => {
-
+    // 由于移除了导航栏，不再需要清理相关事件
 })
 </script>
 
@@ -104,7 +135,16 @@ html {
 
 /* 全局样式 */
 body {
-    background-color: theme('colors.blue.900');
+    @apply bg-blue-900 dark:bg-blue-950;
+}
+
+/* 自适应背景渐变 */
+.bg-adaptive-gradient {
+    background-image: linear-gradient(135deg, theme('colors.blue.900'), theme('colors.indigo.950'));
+}
+
+.dark .bg-adaptive-gradient {
+    background-image: linear-gradient(135deg, theme('colors.blue.950'), theme('colors.indigo.950'));
 }
 </style>
     

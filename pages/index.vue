@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex flex-col">
+    <div class="min-h-screen flex flex-col">
         <!-- 主内容区 -->
         <main class="flex-1 flex items-center justify-center p-4 pt-12 pb-12">
             <div class="container mx-auto max-w-3xl">
@@ -15,7 +15,7 @@
                                 </div>
                                 <h2 class="ml-4 text-2xl font-bold text-gray-800 dark:text-white">阿里云盘TV授权</h2>
                             </div>
-                            <p class="text-gray-600 dark:text-gray-300 mb-6">获取阿里云盘TV端的授权令牌，轻松在电视上访问您的云盘资源。</p>
+                            <p class="text-gray-600 dark:text-gray-300 mb-6">获取阿里云盘TV端的授权令牌，轻松在不限速访问您的云盘资源。</p>
                             <div class="flex justify-center">
                                 <NuxtLink to="/alipan-tv-token" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center">
                                     <span>开始授权</span>
@@ -31,9 +31,9 @@
         </main>
 
         <!-- 页脚 -->
-        <footer class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md py-4 px-6 border-t border-gray-200 dark:border-gray-700">
+        <footer class="py-4 px-6 border-t border-gray-200 dark:border-gray-700">
             <div class="container mx-auto text-center text-sm text-gray-500 dark:text-gray-400">
-                <p>© 2023 工具箱 | 让你的工作更高效</p>
+                <p>© 2025 阿里工具箱 | 让你的工作更高效</p>
             </div>
         </footer>
     </div>
@@ -45,41 +45,6 @@ import { useHead } from '#app'
 // 设置页面标题
 useHead({
     title: '阿里云盘TV授权工具 | 工具箱'
-})
-
-// 主题切换功能
-const toggleTheme = () => {
-    if (document.documentElement.classList.contains('dark')) {
-        document.documentElement.classList.remove('dark')
-        localStorage.theme = 'light'
-    } else {
-        document.documentElement.classList.add('dark')
-        localStorage.theme = 'dark'
-    }
-}
-
-// 初始化主题
-onMounted(() => {
-    // 从localStorage获取主题偏好
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark')
-    } else {
-        document.documentElement.classList.remove('dark')
-    }
-    
-    // 添加主题切换事件监听器
-    // 由于移除了导航栏，主题切换功能不再可用
-    // 如需保留功能，可以将切换按钮移至其他位置
-})
-
-// 页面滚动效果
-onMounted(() => {
-    // 由于移除了导航栏，不再需要滚动监听
-})
-
-// 清理事件监听器
-onBeforeUnmount(() => {
-    // 由于移除了导航栏，不再需要清理相关事件
 })
 </script>
 
@@ -105,4 +70,3 @@ html {
     scroll-behavior: smooth;
 }
 </style>
-    

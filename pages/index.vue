@@ -34,8 +34,8 @@
 const tools = [
  {
         id: 1,
-        title: '阿里云盘TV授权',
-        description: '获取阿里云盘TV端的授权令牌',
+        title: 'OpenList--阿里云盘TV授权--（此工具完全免费）',
+        description: '点击获取阿里云盘TV端的授权令牌',
         path: '/alipan-tv-token',
         available: true
     },

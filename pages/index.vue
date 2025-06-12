@@ -1,23 +1,23 @@
 <template>
-    <div class="min-h-screen bg-gradient-to-br from-blue-900 to-indigo-950 dark:from-blue-950 dark:to-indigo-950 flex flex-col">
+    <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex flex-col">
         <!-- 主内容区 -->
         <main class="flex-1 flex items-center justify-center p-4 pt-12 pb-12">
             <div class="container mx-auto max-w-3xl">
                 <div class="flex flex-col items-center justify-center min-h-[calc(100vh-12rem)]">
                     <!-- 卡片 -->
-                    <div class="w-full max-w-md bg-white/10 dark:bg-gray-800/30 backdrop-blur-md rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-1 border border-white/20 dark:border-white/10">
+                    <div class="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-1">
                         <div class="p-6 md:p-8">
                             <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-blue-600/20 dark:bg-blue-600/20 rounded-xl flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-blue-300 dark:text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-xl flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
                                     </svg>
                                 </div>
-                                <h2 class="ml-4 text-2xl font-bold text-white">阿里云盘TV授权</h2>
+                                <h2 class="ml-4 text-2xl font-bold text-gray-800 dark:text-white">阿里云盘TV授权</h2>
                             </div>
-                            <p class="text-blue-100 dark:text-blue-100 mb-6">获取阿里云盘TV端的授权令牌，轻松在电视上访问您的云盘资源。</p>
+                            <p class="text-gray-600 dark:text-gray-300 mb-6">获取阿里云盘TV端的授权令牌，轻松在电视上访问您的云盘资源。</p>
                             <div class="flex justify-center">
-                                <NuxtLink to="/alipan-tv-token" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center shadow-lg shadow-blue-600/20">
+                                <NuxtLink to="/alipan-tv-token" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center">
                                     <span>开始授权</span>
                                     <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
@@ -31,8 +31,8 @@
         </main>
 
         <!-- 页脚 -->
-        <footer class="bg-blue-900/50 dark:bg-blue-950/50 backdrop-blur-md py-4 px-6 border-t border-white/10">
-            <div class="container mx-auto text-center text-sm text-blue-200 dark:text-blue-200">
+        <footer class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md py-4 px-6 border-t border-gray-200 dark:border-gray-700">
+            <div class="container mx-auto text-center text-sm text-gray-500 dark:text-gray-400">
                 <p>© 2023 工具箱 | 让你的工作更高效</p>
             </div>
         </footer>
@@ -40,26 +40,21 @@
 </template>
 
 <script setup>
-import { useHead, onMounted, ref } from '#app'
+import { useHead } from '#app'
 
 // 设置页面标题
 useHead({
     title: '阿里云盘TV授权工具 | 工具箱'
 })
 
-// 检测系统主题偏好
-const isDarkMode = ref(false)
-
 // 主题切换功能
 const toggleTheme = () => {
     if (document.documentElement.classList.contains('dark')) {
         document.documentElement.classList.remove('dark')
         localStorage.theme = 'light'
-        isDarkMode.value = false
     } else {
         document.documentElement.classList.add('dark')
         localStorage.theme = 'dark'
-        isDarkMode.value = true
     }
 }
 
@@ -68,36 +63,13 @@ onMounted(() => {
     // 从localStorage获取主题偏好
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark')
-        isDarkMode.value = true
     } else {
         document.documentElement.classList.remove('dark')
-        isDarkMode.value = false
     }
     
     // 添加主题切换事件监听器
     // 由于移除了导航栏，主题切换功能不再可用
     // 如需保留功能，可以将切换按钮移至其他位置
-    
-    // 监听系统主题变化
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    const handleThemeChange = (e) => {
-        if (localStorage.theme === 'system' || !localStorage.theme) {
-            if (e.matches) {
-                document.documentElement.classList.add('dark')
-                isDarkMode.value = true
-            } else {
-                document.documentElement.classList.remove('dark')
-                isDarkMode.value = false
-            }
-        }
-    }
-    
-    mediaQuery.addEventListener('change', handleThemeChange)
-    
-    // 清理事件监听器
-    onBeforeUnmount(() => {
-        mediaQuery.removeEventListener('change', handleThemeChange)
-    })
 })
 
 // 页面滚动效果
@@ -131,20 +103,6 @@ onBeforeUnmount(() => {
 /* 平滑滚动 */
 html {
     scroll-behavior: smooth;
-}
-
-/* 全局样式 */
-body {
-    @apply bg-blue-900 dark:bg-blue-950;
-}
-
-/* 自适应背景渐变 */
-.bg-adaptive-gradient {
-    background-image: linear-gradient(135deg, theme('colors.blue.900'), theme('colors.indigo.950'));
-}
-
-.dark .bg-adaptive-gradient {
-    background-image: linear-gradient(135deg, theme('colors.blue.950'), theme('colors.indigo.950'));
 }
 </style>
     

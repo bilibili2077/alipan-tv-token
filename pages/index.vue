@@ -15,7 +15,7 @@
                                 </div>
                                 <h2 class="ml-4 text-2xl font-bold text-gray-800 dark:text-white">阿里云盘TV授权</h2>
                             </div>
-                            <p class="text-gray-600 dark:text-gray-300 mb-6">获取阿里云盘TV端的授权令牌，轻松在不限速访问您的云盘资源。</p>
+                            <p class="text-gray-600 dark:text-gray-300 mb-6">获取阿里云盘TV端的授权令牌，轻松不限速访问您的云盘资源。</p>
                             <div class="flex justify-center">
                                 <NuxtLink to="/alipan-tv-token" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center">
                                     <span>开始授权</span>

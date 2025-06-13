@@ -16,7 +16,7 @@
         </a-layout-content>
 
         <a-layout-footer style="text-align: center">
-            <a-typography-link href="https://github.com/orgs/OpenListTeam/discussions/15" target="_blank">
+            <a-typography-link href="https://github.com/AlistGo/alist/issues/7611" target="_blank">
                 <template #icon>
                     <GithubOutlined />
                 </template>

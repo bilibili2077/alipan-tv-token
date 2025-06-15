@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
       Object.entries(sendData).map(([k, v]) => [k, String(v)])
     );
 
-    const tokenData = await $fetch<TokenResponseEncrypt>('http://api.extscreen.com/aliyundrive/v3/token', {
+    const tokenData = await $fetch<TokenResponseEncrypt>('https://api.extscreen.com/aliyundrive/v3/token', {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(sendData)

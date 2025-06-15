@@ -2,7 +2,7 @@ import { defineEventHandler } from 'h3'
 import type { ApiResponse, QrCodeData } from '~/types/api'
 export default defineEventHandler(async (event) => {
   try {
-    const response = await $fetch<ApiResponse<QrCodeData>>('http://api.extscreen.com/aliyundrive/qrcode', {
+    const response = await $fetch<ApiResponse<QrCodeData>>('https://api.extscreen.com/aliyundrive/qrcode', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
